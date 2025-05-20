@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./favicon/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/style.css" />
+    <!-- FONT Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome Kit -->
+    <script
+      src="https://kit.fontawesome.com/0acb75a9e8.js"
+      crossorigin="anonymous"
+    ></script>
+    <script defer src="./js/weatherCard.js"></script>
+    <script defer src="./js/app.js"></script>
+    <title>Instant Weather</title>
+  </head>
+  <body>
+    <header>
+      <h1>INSTANT WEATHER</h1>
+      <p>Votre météo en un clic</p>
+      <p>Choisissez votre commune et consultez les prévisions du jour</p>
+    </header>
+    <main>
+      <section id="cityForm">
+        <form id="cityForm_form" action="dummy">
+          <label for="code-postal">Saisissez un code postal</label>
+          <input
+            type="text"
+            id="code-postal"
+            placeholder="Entrez un code postal..."
+          />
+          <label
+            for="communeSelect"
+            class="sr-only"
+            aria-label="Choix de la commune"
+            >Sélectionnez la commune</label
+          >
+          <select id="communeSelect"></select>
+          
+          <div id="id_option_sup">
+            <label for="nombreJours">Nombre de jours</label><br>
+            <input type="range" id="volume" name="nombreJours" min="0" max="7" value="1" />
+            <script>
+
+            </script>
+            <div class="option_sup">
+              <label  for="scales">Afficher la Latitude</label>
+              <input style="min-width:25px;" type="checkbox" id="latitude" name="latitude" checked />
+            </div>
+            <div class="option_sup">
+              <label for="scales">Afficher la Longitude</label>
+              <input style="min-width:25px;" type="checkbox" id="longitude" name="longitude" checked />
+            </div>
+            <div class="option_sup">
+              <label for="scales">Afficher le cumul de pluie (en mm)</label>
+              <input style="min-width:25px;" type="checkbox" id="cumulPluie" name="cumulPluie" checked />
+            </div>
+            <div class="option_sup">
+              <label for="scales">Afficher le vent moyen à 10 mètres </label>
+              <input style="min-width:25px;" type="checkbox" id="ventMoyen" name="ventMoyen" checked />
+            </div>
+            <div class="option_sup">
+              <label for="scales">Afficher la Direction du vent en degrés</label>
+              <input style="min-width:25px;" type="checkbox" id="dirVent" name="dirVent" checked />
+            </div>
+          </div>
+        </form>
+        <button id="validationButton">Valider</button>
+      </section>
+      <section id="weatherInformation">
+        <!-- Ajouter les informations météo ici -->
+         <!-- <div class="weather-card">
+        <div class="weather-header">
+            <div class="weather-city">RENNES</div>
+            <div class="weather-date">Mardi 8 août 2023</div>
+        </div>
+        
+        <div class="weather-condition">COUVERT</div>
+        
+        <div class="weather-temps">
+            <div class="temp">
+                <div class="temp-label">T min</div>
+                <div class="temp-value">14°C</div>
+            </div>
+            <div class="temp">
+                <div class="temp-label">T max</div>
+                <div class="temp-value">23°C</div>
+            </div>
+        </div>
+        
+        <hr class="weather-divider">
+        
+        <div class="weather-details">
+            <div class="detail-row">
+                <span class="detail-label">Ensoleillement</span>
+                <span class="detail-value">8 heures</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Probabilité de pluie</span>
+                <span class="detail-value">20 %</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Latitude</span>
+                <span class="detail-value">48.0833</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Longitude</span>
+                <span class="detail-value">-1.6833</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Cumul pluie</span>
+                <span class="detail-value">13 mm</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Vent moyen (10m)</span>
+                <span class="detail-value">30 km/h</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Direction du vent</span>
+                <span class="detail-value">170°</span>
+            </div>
+        </div>
+        -->
+      </section>
+    </main>
+  </body>
+</html>

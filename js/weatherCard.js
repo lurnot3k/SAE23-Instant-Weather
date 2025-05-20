@@ -70,6 +70,9 @@ function createCard(data) {
           <span class="detail-label">Direction du vent</span>
           <span class="detail-value">${data.forecast.dirwind10m || 'N/A'}°</span>
         </div>` : ''}
+        </div>
+        </div>
+
       
   `;
 

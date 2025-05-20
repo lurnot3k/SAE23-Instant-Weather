@@ -4,7 +4,7 @@ const communeSelect = document.getElementById("communeSelect");
 const validationButton = document.getElementById("validationButton");
 const id_option_sup = document.getElementById("id_option_sup");
 
-const nombreJoursInput = document.getElementById("volume"); // Input range pour le nombre de jours
+const nombreJoursInput = document.getElementById("nombreJours"); // Input range pour le nombre de jours
 const latitudeCheckbox = document.getElementById("latitude");
 const longitudeCheckbox = document.getElementById("longitude");
 const cumulPluieCheckbox = document.getElementById("cumulPluie");

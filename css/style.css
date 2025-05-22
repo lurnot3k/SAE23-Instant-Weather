@@ -57,7 +57,6 @@ h1 {
 #cityForm_form input,
 #cityForm_form select {
   min-width: 280px;
-  /* width: 80%; */
 }
 
 .sr-only {
@@ -114,27 +113,46 @@ h1 {
   border-radius: 5px;
 }
 
-#weatherInformation {
-  display: none;
-  justify-content: space-between;
-  align-items: center;
-  background-color: var(--color-primary);
-  border: 2px solid var(--color-secondary);
-  margin: 20px auto;
-  width: 80%;
-  border-radius: 15px;
-  padding: 10px;
-}
-
 #weatherInformation div {
   text-align: center;
   margin: 10px 5px;
   background-color: var(--color-secondary);
   color: var(--color-font);
-  border: 2px solid var(--color-secondary);
   border-radius: 8px;
 }
 
+#weatherInformation {
+  display: none;
+  background-color: white;
+  border: 2px solid var(--color-secondary);
+  margin: 20px auto;
+  width: 80%;
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.weather-card {
+  background-color: var(--color-secondary);
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.weather-card-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
 
 .reloadButton {
   width: 280px;
@@ -146,6 +164,7 @@ h1 {
   border: 2px solid var(--color-primary);
   border-radius: 5px;
   cursor: pointer;
+  height: 50px;
 }
 
 .reloadButton:hover {
@@ -160,35 +179,10 @@ h1 {
 }
 
 
-/* ------------------- MEDIA QUERIES ----------------------- */
-
-@media screen and (max-width: 1024px) {
-  #weatherInformation {
-    flex-wrap: wrap;
-  }
-
-  #weatherInformation div {
-    width: 98%;
-  }
+.force-white {
+  background-color: white !important;
 }
 
-@media screen and (max-width: 425px) {
-  #cityForm {
-    width: 95%;
-    margin: 8px auto;
-  }
-}
-
-
-.weather-card {
-  width: 100%;
-  max-width: 400px;
-  background-color: #2c3e50;
-  color: white;
-  border-radius: 10px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-}
 
 .weather-header {
   padding: 20px;
@@ -272,3 +266,41 @@ h1 {
 #img_card {
   height: 200px;
 }
+
+
+/* ------------------- MEDIA QUERIES ----------------------- */
+
+@media screen and (max-width: 1024px) {
+  #weatherInformation {
+    flex-wrap: wrap;
+  }
+
+  #weatherInformation div {
+    width: 98%;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  #cityForm {
+    width: 95%;
+    margin: 8px auto;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .weather-card {
+    width: calc(50% - 20px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cards-container {
+    grid-template-columns: 1fr;
+  }
+  
+  #weatherInformation {
+    width: 95%;
+    padding: 10px;
+  }
+}
+

@@ -1,26 +1,55 @@
-function createCard(data) {
-  // Récupérer les options sélectionnées
+function createCards(data, numberOfDays) {
+  const weatherSection = document.getElementById("weatherInformation");
+  weatherSection.innerHTML = ""; 
+  
+  const cardsContainer = document.createElement("div");
+  cardsContainer.className = "force-white cards-container ";
+  
+  // Boucle avec le nbr de jours
+  for (let i = 0; i < numberOfDays; i++) {
+    const forecast = data.forecast[i];
+    const cityData = data.city;
+    
+    const dayData = {
+      city: cityData,
+      forecast: forecast
+    };
+    
+    // Création de la div pour la carte
+    const cardElement = document.createElement("div");
+    cardElement.innerHTML = generateCardHTML(dayData);
+    cardsContainer.appendChild(cardElement);
+  }
+  
+  weatherSection.appendChild(cardsContainer);
+  
+  // Bouton de nouvelle recherche
+  const reloadButton = document.createElement("button");
+  reloadButton.textContent = "Nouvelle recherche";
+  reloadButton.classList.add("reloadButton");
+  reloadButton.addEventListener("click", () => location.reload());
+  weatherSection.appendChild(reloadButton);
+  
+  // Cacher le formulaire et afficher la section météo
+  document.getElementById("cityForm").style.display = "none";
+  weatherSection.style.display = "flex";
+}
+
+function generateCardHTML(data) {
   const options = getFormData();
   
-  // Créer un tableau des options supplémentaires sélectionnées
-  const option_sup = [];
-  if (options.latitude) option_sup.push('latitude');
-  if (options.longitude) option_sup.push('longitude');
-  if (options.cumulPluie) option_sup.push('rain');
-  if (options.ventMoyen) option_sup.push('wind');
-  if (options.dirVent) option_sup.push('winddirection');
-
-  // Créer la structure HTML de la carte
-  const cardHTML = `
+  const forecastDate = new Date(data.forecast.datetime);
+  const formattedDate = formatDate(forecastDate);
+  
+  return `
     <div class="weather-card">
       <div class="weather-header">
         <div class="weather-city">${data.city.name.toUpperCase()}</div>
-        <div class="weather-date">${formatDate(new Date())}</div>
+        <div class="weather-date">${formattedDate}</div>
       </div>
       
       <div class="weather-condition">
         <img id="img_card" src="${choixImage(data.forecast.weather)}" />
-        
       </div>
       <div class="weather-condition">${getWeatherCondition(data.forecast.weather)}</div>
       <div class="weather-temps">
@@ -70,29 +99,11 @@ function createCard(data) {
           <span class="detail-label">Direction du vent</span>
           <span class="detail-value">${data.forecast.dirwind10m || 'N/A'}°</span>
         </div>` : ''}
-        </div>
-        </div>
-
-      
+      </div>
+    </div>
   `;
-
-  // Ajouter la carte à la section météo
-  const weatherSection = document.getElementById("weatherInformation");
-  weatherSection.innerHTML = cardHTML;
-  
-  // Cacher le formulaire et afficher la section météo
-  document.getElementById("cityForm").style.display = "none";
-  weatherSection.style.display = "flex";
-
-  // Ajouter le bouton de nouvelle recherche
-  const reloadButton = document.createElement("button");
-  reloadButton.textContent = "Nouvelle recherche";
-  reloadButton.classList.add("reloadButton");
-  reloadButton.addEventListener("click", () => location.reload());
-  weatherSection.appendChild(reloadButton);
 }
 
-// Fonctions utilitaires (garder les mêmes que précédemment)
 function displayHours(sunHours) {
   return sunHours + (sunHours > 1 ? " heures" : " heure");
 }

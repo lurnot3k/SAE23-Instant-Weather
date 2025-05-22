@@ -4,7 +4,7 @@ const communeSelect = document.getElementById("communeSelect");
 const validationButton = document.getElementById("validationButton");
 const id_option_sup = document.getElementById("id_option_sup");
 
-const nombreJoursInput = document.getElementById("nombreJours"); // Input range pour le nombre de jours
+const nombreJoursInput = document.getElementById("nombreJours"); 
 const latitudeCheckbox = document.getElementById("latitude");
 const longitudeCheckbox = document.getElementById("longitude");
 const cumulPluieCheckbox = document.getElementById("cumulPluie");
@@ -44,7 +44,7 @@ function displayCommunes(data) {
 
   }
   else {
-    // Supprimer un message précédent s’il existe déjà
+
     const existingMessage = document.getElementById("error-message");
     if (!existingMessage) {
       const message = document.createElement("p");
@@ -54,21 +54,19 @@ function displayCommunes(data) {
       document.body.appendChild(message);
     }
 
-    // Masquer les éléments inutiles
     communeSelect.style.display = "none";
     validationButton.style.display = "none";
     id_option_sup.style.display = "none";
 
 
-    // Recharger la page après 3 secondes
     setTimeout(() => location.reload(), 3000);
   }
 }
-// Fonction pour effectuer la requête API de météo en utilisant le code de la commune sélectionnée
-async function fetchMeteoByCommune(selectedCommune) {
+// Fonction pour effectuer la requête API de météo en utilisant le code de la commune sélectionnée pour plusieurs jours
+async function fetchMeteoByCommune(selectedCommune, days) {
   try {
     const response = await fetch(
-      `https://api.meteo-concept.com/api/forecast/daily/0?token=8356b25d0dd0d8f0447d702e3ce9e6d54bc9ea3241d087f1fd5ad56ef48c4ab5&insee=${selectedCommune}`
+      `https://api.meteo-concept.com/api/forecast/daily?token=8356b25d0dd0d8f0447d702e3ce9e6d54bc9ea3241d087f1fd5ad56ef48c4ab5&insee=${selectedCommune}&start=0&end=${days-1}`
     );
     const data = await response.json();
     return data;
@@ -121,15 +119,15 @@ function getFormData() {
 // Ajout de l'écouteur d'événement "click" sur le bouton de validation
 validationButton.addEventListener("click", async () => {
   const selectedCommune = communeSelect.value;
-  if (selectedCommune) { // si selectedCommune n'est pas vide
+  const nombreJours = nombreJoursInput.value;
+  if (selectedCommune) {
     try {
-      const data = await fetchMeteoByCommune(selectedCommune);
+      const data = await fetchMeteoByCommune(selectedCommune, nombreJours);
       const option_sup = getFormData();
-      createCard(data);
+      createCards(data, nombreJours);
     } catch (error) {
       console.error("Erreur lors de la requête API meteoConcept:", error);
       throw error;
     }
   }
 });
-

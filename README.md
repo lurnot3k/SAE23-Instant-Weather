@@ -1,4 +1,4 @@
-# SAE14 - Se présenter sur Internet
+# SAE23 - Mettre en place une solution informatique pour l'entreprise
 
 Le projet consiste à créer un site permettant l'affichage de la météo, et cela via une API. Le projet est, par la suite, évalué.
 

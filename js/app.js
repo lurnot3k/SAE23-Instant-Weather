@@ -131,3 +131,30 @@ validationButton.addEventListener("click", async () => {
     }
   }
 });
+
+// Fonctionnalité du darkmode
+const darkModeToggle = document.getElementById('darkModeToggle');
+const body = document.body;
+const icon = darkModeToggle.querySelector('i');
+
+
+const currentTheme = localStorage.getItem('theme') || 'light';
+if (currentTheme === 'dark') {
+  body.setAttribute('data-theme', 'dark');
+  icon.className = 'fas fa-sun';
+}
+
+// Activer le darkmode
+darkModeToggle.addEventListener('click', () => {
+  const isLight = !body.hasAttribute('data-theme') || body.getAttribute('data-theme') === 'light';
+  
+  if (isLight) {
+    body.setAttribute('data-theme', 'dark');
+    icon.className = 'fas fa-sun';
+    localStorage.setItem('theme', 'dark');
+  } else {
+    body.setAttribute('data-theme', 'light');
+    icon.className = 'fas fa-moon';
+    localStorage.setItem('theme', 'light');
+  }
+});

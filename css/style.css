@@ -324,6 +324,20 @@ h1 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
+#nombreJoursValue {
+  font-weight: bold;
+  color: var(--color-secondary);
+  background-color: rgba(15, 51, 89, 0.1);
+  padding: 2px 8px;
+  border-radius: 4px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+[data-theme="dark"] #nombreJoursValue {
+  color: var(--color-font);
+  background-color: rgba(45, 79, 115, 0.3);
+}
+
 /* ------------------- MEDIA QUERIES ----------------------- */
 
 @media screen and (max-width: 1024px) {

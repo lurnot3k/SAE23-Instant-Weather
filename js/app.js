@@ -5,6 +5,7 @@ const validationButton = document.getElementById("validationButton");
 const id_option_sup = document.getElementById("id_option_sup");
 
 const nombreJoursInput = document.getElementById("nombreJours"); 
+const nombreJoursValue = document.getElementById("nombreJoursValue"); 
 const latitudeCheckbox = document.getElementById("latitude");
 const longitudeCheckbox = document.getElementById("longitude");
 const cumulPluieCheckbox = document.getElementById("cumulPluie");
@@ -156,5 +157,12 @@ darkModeToggle.addEventListener('click', () => {
     body.setAttribute('data-theme', 'light');
     icon.className = 'fas fa-moon';
     localStorage.setItem('theme', 'light');
+  }
+});
+
+// Affichage du nbr de jour sur le slider
+nombreJoursInput.addEventListener('input', (e) => {
+  if (nombreJoursValue) {
+    nombreJoursValue.textContent = e.target.value;
   }
 });

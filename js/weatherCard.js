@@ -40,6 +40,7 @@ function generateCardHTML(data) {
   
   const forecastDate = new Date(data.forecast.datetime);
   const formattedDate = formatDate(forecastDate);
+  const [image, alt_text] = choixImage(data.forecast.weather);
   
   return `
     <div class="weather-card">
@@ -49,7 +50,7 @@ function generateCardHTML(data) {
       </div>
       
       <div class="weather-condition">
-        <img id="img_card" src="${choixImage(data.forecast.weather)}" />
+        <img id="img_card" src="${image}" alt="${alt_text}" />
       </div>
       <div class="weather-condition">${getWeatherCondition(data.forecast.weather)}</div>
       <div class="weather-temps">
@@ -211,15 +212,18 @@ function getWeatherCondition(weatherCode) {
 function choixImage(weatherCode) {
   if (weatherCode <= 1) {
     image = 'images/sunny.svg';
+    alt_text = 'Image de soleil';
   }
 
   else if (weatherCode >= 2 && weatherCode <= 7)  {
     image = 'images/cloudy.svg';
+    alt_text = 'Image de météo nuageuse';
   }
 
   else if (weatherCode >= 10)  {
     image = 'images/rainy.svg';
+    alt_text = 'Image de pluie';
   }
 
-  return image
+  return [image, alt_text]
 }

@@ -1,3 +1,10 @@
+/**
+ * Application météo - SAÉ 2.03
+ * @file Gère les interactions utilisateur et les appels API
+ * @author Lubin GIRERD
+ */
+
+
 // Sélection des éléments
 const codePostalInput = document.getElementById("code-postal");
 const communeSelect = document.getElementById("communeSelect");
